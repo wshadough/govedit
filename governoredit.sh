@@ -1,5 +1,25 @@
 #!/bin/bash
 
+function question {
+echo "Welcome!"
+echo "--"
+echo "1. Display the current cpu governor
+2. Change the current cpu governor"
+read -p "What would you like to do? (1/2): " answer
+if [ $answer = "1" ]
+then declaration
+testing
+elif [ $answer = "2" ]
+then clear 
+setup
+else
+echo "you shouldn't be trying to outsmart me like this :("
+sleep 1
+clear
+question
+fi;
+}
+
 function decision {
 echo "Here are the options: "
 echo ---
@@ -28,26 +48,23 @@ fi;
 } 
 
 function testing {
-read -p "Is this correct? (y/n) " choice
+read -p "Is this what you wanted? (y/n) " choice
 if [ $choice = "y" ]
 then echo "ok then" 
      sleep 1 && unset $choice
      kill -9 $PPID
 elif [ $choice = "n" ]
-then echo "rip, i'll dump you into the selector again then" 
+then echo "time to edit it then" 
      sleep 1 && unset $choice
      clear
      setup
-else echo "lmao what"
+else echo "quit trying to confuse me :("
      sleep 1 && testing
 fi;
 }
 
 function declaration {
-sleep 1
 clear
-echo "All done!" 
-sleep 1
 printf "The current governor is: "
 cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 echo --;
@@ -59,6 +76,8 @@ decision
 declaration
 testing;
 }
+
+question
 
 setup
 
