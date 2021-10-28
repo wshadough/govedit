@@ -31,11 +31,13 @@ function testing {
 read -p "Is this correct? (y/n) " choice
 if [ $choice = "y" ]
 then echo "ok then" 
-     sleep 1 && kill -9 $PPID
+     sleep 1 && unset $choice
+     kill -9 $PPID
 elif [ $choice = "n" ]
 then echo "rip, i'll dump you into the selector again then" 
-     sleep 1 && clear
-     redo
+     sleep 1 && unset $choice
+     clear
+     setup
 else echo "lmao what"
      sleep 1 && testing
 fi;
@@ -52,16 +54,12 @@ echo --;
 
 }
 
-function redo {
+function setup {
 decision
 declaration
 testing;
 }
 
-decision
+setup
 
-declaration
 
-unset $governor
-
-testing
