@@ -5,6 +5,7 @@ echo "Welcome!"
 echo "--"
 echo "1. Display the current cpu governor
 2. Change the current cpu governor"
+echo "--"
 read -p "What would you like to do? (1/2): " answer
 if [ $answer = "1" ]
 then declaration
