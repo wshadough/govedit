@@ -1,4 +1,3 @@
 # govedit
-a simple bash script for changing the cpu governor;
-
+a bash script to change governors i made for myself
 needs the cpupower package
